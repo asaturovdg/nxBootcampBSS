@@ -1,0 +1,35 @@
+version: '2'
+
+services:
+  bss:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    container_name: bss
+    depends_on:
+      - bss_db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://bss_db/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - "8080:8080"
+    networks:
+      - bssnet
+  bss_db:
+    build:
+      dockerfile: dbDockerfile
+      context: .
+    container_name: bss_db
+    ports:
+      - "5430:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+    networks:
+      - bssnet
+    restart: unless-stopped
+networks:
+  bssnet:
+    driver: bridge

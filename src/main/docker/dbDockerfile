@@ -1,0 +1,2 @@
+FROM postgres:15.2
+ADD ./sqls/postgres_db_init.sql /docker-entrypoint-initdb.d/
