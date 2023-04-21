@@ -7,6 +7,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// Класс-связка для тарификации: BRT с его помощью создает файл cdrPlus.txt, а HRS - данный файл читает
 @Component
 public class CdrPlusDAO {
     @Value("${cdr.plus.path}")

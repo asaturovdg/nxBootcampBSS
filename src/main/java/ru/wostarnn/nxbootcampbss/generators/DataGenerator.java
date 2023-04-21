@@ -14,9 +14,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+// Генератор данных для тарификации.
+// На данный момент есть возможности:
+// ---- Сгенерировать файл CDR ----
+//  Формат файла: <тип звонка>, <номер телефона вызывающего>, <номер телефона получателя звонка>, <дата начала>, <дата окончания>
+//  - Количество строк в CDR задается переменной cdr.generation.rows в файле application.properties
+//  - Количество "уникальных" вызывающих номеров задается переменной cdr.generation.callers в файле application.properties
+//  (на самом деле повторения номеров возможны, но вероятность этого достаточно мала + CDR от этого не сломается)
+//  - Вызывающие номера остаются в памяти генератора для того, чтобы при следующей генерации (manager/billing) номера остались прежними
+//  (это позволяет не добавлять новых абонентов в БД для проверки работоспособности)
+//  - Максимальная длительность звонка задается переменной MAX_CALL_DURATION в секундах
+//  Для генерации случайных данных используется Random и библиотека RgxGen
+//  Путь к файлу относительно .jar задается переменной cdr.path в файле application.properties
+//  - Все регулярные выражения для генерации можно посмотреть у переменных класса RgxGen
+// ---- Сгенерировать абонентов для БД ----
+//  Было решено, что все абоненты, находящиеся в БД, являются абонентами оператора "Ромашка"
+//  - Количество абонентов будет равно половине количества "уникальных" вызывающих номеров
+//  (для того, чтобы из файла CDR можно было отсеять номера, не находящиеся в БД)
+//  - Минимальный и максимальный баланс абонента задается переменными MIN_ABONENT_BALANCE и MAX_ABONENT_BALANCE соответственно
+//  - Список возможных тарифов у абонента задается переменной TARIFF_LIST
+//  (по-хорошему следовало бы брать список тарифов из БД, но решил пока оставить так)
+
 @Service
 public class DataGenerator {
     private final long MAX_CALL_DURATION = 60 * 120; // 120 минут
+
+    private final int MIN_ABONENT_BALANCE = 750;
+    private final int MAX_ABONENT_BALANCE = 4000;
     private final List<String> TARIFF_LIST = new ArrayList<>(List.of("03", "06", "11", "0X"));
     @Value("${cdr.path}")
     private String cdrPath;
@@ -51,7 +75,7 @@ public class DataGenerator {
         for (int i = 0; i < cdrCallerPhoneNumbers/2; i++) {
             Abonent abonent = new Abonent();
             abonent.setId(++id);
-            abonent.setBalance(random.nextInt(750,4000));
+            abonent.setBalance(random.nextInt(MIN_ABONENT_BALANCE,MAX_ABONENT_BALANCE));
             abonent.setPhoneNumber(callers.get(i));
             abonent.setTariff_id(TARIFF_LIST.get(random.nextInt(TARIFF_LIST.size())));
             abonents.add(abonent);

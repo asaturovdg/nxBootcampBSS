@@ -3,6 +3,7 @@ package ru.wostarnn.nxbootcampbss.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
+// Класс абонента для работы с БД
 @Entity
 @Data
 public class Abonent {

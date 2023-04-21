@@ -6,6 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.wostarnn.nxbootcampbss.dao.AbonentDAO;
 import ru.wostarnn.nxbootcampbss.entities.Abonent;
 
+// Сервис, которому делегирует задачи контроллер менеджеров (кроме тарификации, ей занимается BRT)
+
 @Service
 public class ManagerService {
 

@@ -14,6 +14,8 @@ import ru.wostarnn.nxbootcampbss.response.ReportResponseBodyCall;
 import java.util.ArrayList;
 import java.util.List;
 
+// Сервис, которому делегирует задачи контроллер абонентов
+
 @Service
 public class AbonentService {
 

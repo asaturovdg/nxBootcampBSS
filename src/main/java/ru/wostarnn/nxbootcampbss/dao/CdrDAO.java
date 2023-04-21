@@ -7,6 +7,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// Класс-связка между CDR-файлом и BRT
 @Component
 public class CdrDAO {
     @Value("${cdr.path}")

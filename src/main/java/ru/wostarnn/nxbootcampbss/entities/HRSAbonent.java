@@ -3,7 +3,7 @@ package ru.wostarnn.nxbootcampbss.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-
+// Класс абонента для HRS, который помогает обсчитать всех абонентов (особенно тех, чьи тарифы включают в себя пакет минут)
 @Data
 @AllArgsConstructor
 public class HRSAbonent {

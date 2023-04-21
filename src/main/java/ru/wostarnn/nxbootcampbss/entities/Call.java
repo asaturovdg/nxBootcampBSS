@@ -3,6 +3,8 @@ package ru.wostarnn.nxbootcampbss.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+// Класс звонка для работы с БД
 @Entity
 @Data
 @NoArgsConstructor

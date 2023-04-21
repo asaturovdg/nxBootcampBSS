@@ -11,6 +11,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+// Задано два пользователя: пользователь с правами доступа абонента
+// и пользователь с правами доступа абонента и менеджера
+
+// Не смог разобраться, как правильно использовать JdbcUserDetailsManager
+// для того, чтобы можно было читать пользователей из БД
+// Теоритически, мог создать свой класс для реализации данного функционала,
+// Но решил не уделять этому много времени и сосредоточиться на других задачах,
+// Так что оставил хардкод :D
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
