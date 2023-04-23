@@ -3,7 +3,30 @@
 ## Запуск приложения с помощью docker compose
 
 ```cmd
-.\mvnw clean package
-cp .\target\nxBootcampBSS-1.jar .\src\main\docker\
-docker compose -f .\src\main\docker\docker-compose.yml up -d --build
+docker compose -f docker-compose.yml up --build
 ```
+
+## Адрес БД (для подключения с локальной машины)
+`localhost:5430/postgres`
+
+Логин: `postgres`
+
+Пароль: `admin`
+
+## Spring Security
+### Пользователь с правами абонента
+
+Логин: `abonent`
+
+Пароль: `abonent`
+
+### Пользователь с правами менеджера и абонента
+
+Логин: `manager`
+
+Пароль: `manager`
+
+## Формат CDR-файла
+`<тип звонка>, <номер телефона вызывающего>, <номер телефона получателя звонка>, <дата начала>, <дата окончания>`
+
+### Несмотря на названия некоторых полей в классах BRT и HRS, кэш внутри докера реализовать пока НЕ получилось
