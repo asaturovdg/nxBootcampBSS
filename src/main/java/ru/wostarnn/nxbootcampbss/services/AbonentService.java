@@ -30,15 +30,14 @@ public class AbonentService {
     }
 
     @Transactional(isolation = Isolation.READ_COMMITTED)
-    public Long pay(String phoneNumber, double value) {
+    public Abonent pay(String phoneNumber, double value) {
         Abonent abonent = abonentDAO.findAbonent(phoneNumber);
         if (abonent == null) {
             return null;
         }
         abonent.setBalance(abonent.getBalance() + value);
-        Long id = abonent.getId();
         abonentDAO.saveAbonent(abonent);
-        return id;
+        return abonent;
     }
 
     @Transactional

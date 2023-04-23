@@ -3,7 +3,7 @@ version: '2'
 services:
   bss:
     build:
-      dockerfile: Dockerfile
+      dockerfile: DockerfileBSS
       context: .
     container_name: bss
     depends_on:
@@ -19,7 +19,7 @@ services:
       - bssnet
   bss_db:
     build:
-      dockerfile: dbDockerfile
+      dockerfile: DockerfileDB
       context: .
     container_name: bss_db
     ports:

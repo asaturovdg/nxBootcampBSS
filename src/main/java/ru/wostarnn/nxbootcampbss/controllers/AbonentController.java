@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import ru.wostarnn.nxbootcampbss.entities.Abonent;
 import ru.wostarnn.nxbootcampbss.requests.PaymentRequestBody;
 import ru.wostarnn.nxbootcampbss.response.PaymentResponseBody;
 import ru.wostarnn.nxbootcampbss.response.ReportResponseBody;
@@ -31,7 +32,7 @@ public class AbonentController {
     public PaymentResponseBody payPatch(@Valid @RequestBody PaymentRequestBody requestBody) {
         String numberPhone = requestBody.getNumberPhone();
         double money = requestBody.getMoney();
-        Long id = abonentService.pay(numberPhone, money);
-        return new PaymentResponseBody(id, numberPhone, money);
+        Abonent abonent = abonentService.pay(numberPhone, money);
+        return new PaymentResponseBody(abonent.getId(), numberPhone, abonent.getBalance());
     }
 }
