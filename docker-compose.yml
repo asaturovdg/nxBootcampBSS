@@ -23,7 +23,7 @@ services:
       context: .
     container_name: bss_db
     ports:
-      - "5430:5432"
+      - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=admin
