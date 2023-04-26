@@ -7,7 +7,7 @@ import ru.wostarnn.nxbootcampbss.dao.CdrPlusDAO;
 import ru.wostarnn.nxbootcampbss.dao.TariffDAO;
 import ru.wostarnn.nxbootcampbss.entities.Abonent;
 import ru.wostarnn.nxbootcampbss.entities.Call;
-import ru.wostarnn.nxbootcampbss.entities.HRSAbonent;
+import ru.wostarnn.nxbootcampbss.baseclasses.HRSAbonent;
 import ru.wostarnn.nxbootcampbss.entities.Tariff;
 
 import java.time.Duration;
