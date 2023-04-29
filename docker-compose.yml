@@ -5,11 +5,13 @@ services:
     build:
       dockerfile: DockerfileBSS
       context: .
+    image: asaturovdg/bss:latest
     container_name: bss
     depends_on:
-      - bss_db
+      db:
+        condition: service_healthy
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://bss_db/postgres
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db/postgres
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=admin
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
@@ -17,13 +19,20 @@ services:
       - "8080:8080"
     networks:
       - bssnet
-  bss_db:
+  db:
     build:
       dockerfile: DockerfileDB
       context: .
-    container_name: bss_db
+    image: asaturovdg/db:latest
+    container_name: db
     ports:
-      - "5430:5432"
+      - "5430:5430"
+    healthcheck:
+      test: [ "CMD", "pg_isready","-d","postgres","-U","postgres" ]
+      interval: 5s
+      timeout: 1s
+      retries: 5
+      start_period: 5s
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=admin
