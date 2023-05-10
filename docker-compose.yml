@@ -26,7 +26,7 @@ services:
     image: asaturovdg/db:latest
     container_name: db
     ports:
-      - "5430:5430"
+      - "5430:5432"
     healthcheck:
       test: [ "CMD", "pg_isready","-d","postgres","-U","postgres" ]
       interval: 5s

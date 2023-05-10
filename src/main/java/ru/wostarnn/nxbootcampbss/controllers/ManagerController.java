@@ -22,7 +22,6 @@ import java.util.List;
 @Controller
 @RequestMapping("manager")
 public class ManagerController {
-
     private final BRT brt;
     private final ManagerService managerService;
 
@@ -54,7 +53,7 @@ public class ManagerController {
     @ResponseBody
     public BillingResponseBody billing(@Valid @RequestBody BillingRequestBody requestBody) {
         if (requestBody.getAction().equals("run")) {
-            Collection<Abonent> abonents =  brt.performBilling();
+            Collection<Abonent> abonents = brt.performBilling();
             List<BillingResponseBodyNumber> responseBodyNumbers = new ArrayList<>();
             for (Abonent abonent : abonents) {
                 BillingResponseBodyNumber responseBodyNumber = new BillingResponseBodyNumber(abonent.getPhoneNumber(), abonent.getBalance());

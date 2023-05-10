@@ -1,16 +1,14 @@
 package ru.wostarnn.nxbootcampbss.requests;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 
 @Data
 public class CreateAbonentRequestBody {
-    @Size(min = 11, max = 11, message = "{validation.name.size.phoneNumber}")
+    @Pattern(regexp = "79[0-9]{9}", message = "{numberPhone.Pattern}")
     private String numberPhone;
-    @NotBlank
+    @NotBlank(message = "{tariff_id.NotBlank}")
     private String tariff_id;
-    @Positive
+    @PositiveOrZero(message = "{ballance.PositiveOrZero}")
     private double ballance;
 }

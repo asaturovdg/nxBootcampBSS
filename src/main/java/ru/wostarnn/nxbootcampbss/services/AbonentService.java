@@ -43,6 +43,11 @@ public class AbonentService {
     @Transactional
     public ReportResponseBody generateReport(String phoneNumber) {
         Abonent abonent = abonentDAO.findAbonent(phoneNumber);
+
+        if (abonent == null) {
+            return new ReportResponseBody("there is no abonent with given phone number");
+        }
+
         List<Call> calls = callDAO.findByPhoneNumber(phoneNumber);
 
         Long id = abonent.getId();

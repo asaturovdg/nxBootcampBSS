@@ -14,4 +14,8 @@ public class ReportResponseBody {
     private List<ReportResponseBodyCall> payload;
     private double totalCost;
     private String monetaryUnit;
+
+    public ReportResponseBody(String error) {
+        this.numberPhone = error;
+    }
 }

@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 public class BillingRequestBody {
-    @NotBlank
+    @NotBlank(message = "{action.NotBlank}")
     private String action;
 }
