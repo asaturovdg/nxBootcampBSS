@@ -1,10 +1,5 @@
-version: '2'
-
 services:
   bss:
-    build:
-      dockerfile: DockerfileBSS
-      context: .
     image: asaturovdg/bss:latest
     container_name: bss
     depends_on:
@@ -20,10 +15,7 @@ services:
     networks:
       - bssnet
   db:
-    build:
-      dockerfile: DockerfileDB
-      context: .
-    image: asaturovdg/db:latest
+    image: postgres:15.2
     container_name: db
     ports:
       - "5430:5432"
@@ -33,6 +25,8 @@ services:
       timeout: 1s
       retries: 5
       start_period: 5s
+    volumes:
+      - ./sqls/initDB.sql:/docker-entrypoint-initdb.d/initDB.sql
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=admin
