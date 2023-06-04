@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.5</version>
+        <version>3.1.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>ru.wostarnn</groupId>
@@ -67,6 +67,21 @@
             <artifactId>rgxgen</artifactId>
             <version>1.4</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
 
     </dependencies>
 

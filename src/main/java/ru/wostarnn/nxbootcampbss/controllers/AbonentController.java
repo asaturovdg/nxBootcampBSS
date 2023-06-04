@@ -1,5 +1,6 @@
 package ru.wostarnn.nxbootcampbss.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
@@ -32,6 +33,7 @@ public class AbonentController {
         return new ReportResponseBody(PHONE_NUMBER_PATTERN_INVALID);
     }
 
+    @Operation(summary = "Pay")
     @PatchMapping(value = "/pay", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public PaymentResponseBody payPatch(@Valid @RequestBody PaymentRequestBody requestBody) {
